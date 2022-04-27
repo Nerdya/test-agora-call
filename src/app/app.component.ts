@@ -10,6 +10,7 @@ import { User } from './models/user';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+    title = 'face-mask-detection';
     currentUser!: User;
 
     constructor(
@@ -17,6 +18,17 @@ export class AppComponent {
         private authService: AuthService
     ) {
         this.authService.currentUser.subscribe(x => this.currentUser = x);
+    }
+
+    isNotAuthRoute() {
+        if (this.router.url.includes('/auth')) {
+            return false;
+        }
+        return true;
+    }
+
+    getUrl() {
+        return this.router.url;
     }
 
     logout() {

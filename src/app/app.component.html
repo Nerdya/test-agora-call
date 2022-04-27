@@ -1,12 +1,24 @@
-<!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
-    <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/">Home</a>
-        <a class="nav-item nav-link" (click)="logout()">Logout</a>
-    </div>
-</nav>
+<div *ngIf="isNotAuthRoute()">
+    <!-- Toolbar -->
+    <mat-toolbar color="primary" class="app-toolbar">
+        <mat-icon>healing</mat-icon>
+        <span>FaceMaskDetection</span>
+        <span class="spacer"></span>
+        <button mat-button mat-raised-button (click)="logout()">Logout</button>
+    </mat-toolbar>
 
-<!-- main app container -->
-<div class="container">
-    <router-outlet></router-outlet>
+    <!-- Sidenav -->
+    <mat-sidenav-container class="sidenav-container">
+        <mat-sidenav opened mode="side">
+            <mat-button-toggle-group name="fontStyle" vertical [value]="getUrl()">
+                <mat-button-toggle mat-button routerLink="/" value="/">Welcome</mat-button-toggle>
+                <mat-button-toggle mat-button routerLink="dashboard" value="/dashboard">Dashboard</mat-button-toggle>
+            </mat-button-toggle-group>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
 </div>
+
+<router-outlet *ngIf="!isNotAuthRoute()"></router-outlet>
