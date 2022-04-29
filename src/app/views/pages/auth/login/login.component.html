@@ -1,4 +1,10 @@
 <div class="login-wrapper">
+    <mat-card *ngIf="error" class="error-alert">
+        <mat-card-subtitle>{{error}}</mat-card-subtitle>
+    </mat-card>
+    <mat-card *ngIf="success" class="success-alert">
+        <mat-card-subtitle class="success-text">{{success}}</mat-card-subtitle>
+    </mat-card>
     <mat-card class="login-card">
         <mat-card-title>Login</mat-card-title>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -12,6 +18,5 @@
             </mat-card-content>
             <button mat-raised-button color="primary">Login</button>
         </form>
-        <p>Form status: {{ loginForm.status }}</p>
     </mat-card>
 </div>

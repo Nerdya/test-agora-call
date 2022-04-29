@@ -1,4 +1,6 @@
+import { app_config } from './app-config';
+
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:4000',
+  apiUrl: app_config.API_URL,
 };

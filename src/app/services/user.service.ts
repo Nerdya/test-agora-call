@@ -11,4 +11,12 @@ export class UserService {
     getAll() {
         return this.http.get<User[]>(`${environment.apiUrl}/users`);
     }
+
+    register(user: any) {
+        return this.http.post(`${environment.apiUrl}/users/register`, user);
+    }
+
+    delete(id: any) {
+        return this.http.delete(`${environment.apiUrl}/users/${id}`);
+    }
 }
