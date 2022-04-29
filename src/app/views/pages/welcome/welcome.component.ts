@@ -12,18 +12,32 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class WelcomeComponent implements OnInit {
     loading = false;
-    users!: User[];
+    currentUser: User;
+    users: any;
 
     constructor(
-        private userService: UserService,
-    ) { }
+        private authService: AuthService,
+        private userService: UserService
+    ) {
+        this.currentUser = this.authService.currentUserValue;
+    }
 
-    ngOnInit(): void {
+    ngOnInit() {
         this.loading = true;
-        this.userService.getAll().pipe(first()).subscribe(users => {
-            this.loading = false;
-            this.users = users;
-        });
+        this.loadAllUsers();
+    }
+
+    deleteUser(id: number) {
+        this.userService.delete(id)
+            .pipe(first())
+            .subscribe(() => this.loadAllUsers());
+    }
+
+    private loadAllUsers() {
+        this.userService.getAll()
+            .pipe(first())
+            .subscribe(users => this.users = users);
+        this.loading = false;
     }
 
 }
