@@ -6,7 +6,6 @@ import { fakeBackendProvider } from './helpers/fake-backend';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { WelcomeComponent } from './views/pages/welcome/welcome.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './views/theme/angular-material.module';
@@ -22,8 +21,7 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
         AngularMaterialModule
     ],
     declarations: [
-        AppComponent,
-        WelcomeComponent
+        AppComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
