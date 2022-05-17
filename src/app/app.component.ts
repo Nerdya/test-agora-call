@@ -14,19 +14,19 @@ export class AppComponent {
     currentUser!: User;
     routes = [
         {
-            path: 'welcome',
+            path: '/welcome',
             title: 'Welcome'
         },
         {
-            path: 'dashboard',
+            path: '/dashboard',
             title: 'Dashboard'
         },
         {
-            path: 'customer',
+            path: '/customer',
             title: 'Customer'
         },
         {
-            path: 'agent',
+            path: '/agent',
             title: 'Agent'
         },
     ];
@@ -46,6 +46,7 @@ export class AppComponent {
     }
 
     getUrl() {
+        console.log(this.router.url);
         return this.router.url;
     }
 
