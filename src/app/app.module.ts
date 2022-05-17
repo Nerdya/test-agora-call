@@ -11,6 +11,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './views/theme/angular-material.module';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { WelcomeComponent } from './views/pages/welcome/welcome.component';
+import { DashboardComponent } from './views/pages/dashboard/dashboard.component';
+import { CustomerComponent } from './views/pages/customer/customer.component';
+import { AgentComponent } from './views/pages/agent/agent.component';
 
 @NgModule({
     imports: [
@@ -18,10 +24,16 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
         AppRoutingModule,
         HttpClientModule,
         BrowserAnimationsModule,
-        AngularMaterialModule
+        AngularMaterialModule,
+        FormsModule,
+        ReactiveFormsModule
     ],
     declarations: [
-        AppComponent
+        AppComponent,
+        WelcomeComponent,
+        DashboardComponent,
+        CustomerComponent,
+        AgentComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
