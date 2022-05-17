@@ -1,1 +1,20 @@
-<p>agent works!</p>
+<form>
+    <div class="form-group">
+      <label for="appid">AppId:</label>
+      <input type="text" class="form-control" id="appid" [(ngModel)]="appId" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="form-group">
+      <label for="channel">Channel:</label>
+      <input type="text" class="form-control" id="channel" (ngModel)="channel" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="form-group">
+      <label for="token">Token:</label>
+      <input type="text" class="form-control" id="token" (ngModel)="token" [ngModelOptions]="{standalone: true}">
+    </div>
+    <button class="btn btn-info" (click)="joinCall()">Join</button>
+    <button class="btn btn-info ml-16" (click)="leaveCall()">Leave</button>
+    <button class="btn btn-info ml-16" (click)="checkAudio()">Check Audio</button>
+    <button class="btn btn-info ml-16" (click)="setAudio()">Set Audio</button>
+    <span class="ml-16">{{message}}</span>
+    <div id="local"></div>
+  </form>
