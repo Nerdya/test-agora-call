@@ -5,7 +5,7 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
 // array in local storage for registered users
 // @ts-lint
-let users = JSON.parse(localStorage.getItem('users')!) || [];
+let users = JSON.parse(localStorage.getItem('users')!) || [{ id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User' }];
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {

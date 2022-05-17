@@ -5,10 +5,10 @@ import { DashboardComponent } from './views/pages/dashboard/dashboard.component'
 import { AuthGuard } from './helpers/auth.guard';
 
 const routes: Routes = [
-    { path: '', component: WelcomeComponent, canActivate: [AuthGuard] },
+    { path: 'welcome', component: WelcomeComponent, canActivate: [AuthGuard] },
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
     { path: 'auth', loadChildren: () => import('./views/pages/auth/auth.module').then(m => m.AuthModule) },
-
+    { path: '', redirectTo: 'welcome', pathMatch: 'full'},
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];

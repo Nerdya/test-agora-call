@@ -4,7 +4,7 @@
         <mat-icon>healing</mat-icon>
         <span>FaceMaskDetection</span>
         <span class="spacer"></span>
-        <span>Hi, {{currentUser.firstName}}</span>
+        <!-- <span>Hi, {{currentUser.firstName}}</span> -->
         <button mat-button mat-raised-button (click)="logout()">Logout</button>
     </mat-toolbar>
 
@@ -12,8 +12,8 @@
     <mat-sidenav-container class="sidenav-container">
         <mat-sidenav opened mode="side">
             <mat-button-toggle-group name="fontStyle" vertical [value]="getUrl()">
-                <mat-button-toggle mat-button routerLink="/" value="/">Welcome</mat-button-toggle>
-                <mat-button-toggle mat-button routerLink="dashboard" value="/dashboard">Dashboard</mat-button-toggle>
+                <mat-button-toggle mat-button *ngFor="let route of routes" routerLink="{{route}}" value="{{route}}">{{route}}</mat-button-toggle>
+                <mat-button-toggle mat-button routerLink="{" value="/dashboard">Dashboard</mat-button-toggle>
             </mat-button-toggle-group>
         </mat-sidenav>
         <mat-sidenav-content>
