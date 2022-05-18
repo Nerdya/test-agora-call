@@ -1,10 +1,16 @@
 <form>
   <div class="url-form">
+    <mat-slide-toggle class="url-button" [(ngModel)]="needLogin" [ngModelOptions]="{standalone: true}">Need login</mat-slide-toggle>
+    <mat-form-field appearance="fill" class="ml-16 url-select" *ngIf="needLogin">
+      <mat-label>Login Url</mat-label>
+      <input matInput placeholder="<LOGIN_URL>/auth/login" [(ngModel)]="authUrl" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+  </div>
+  <div class="url-form">
     <button mat-raised-button class="url-button" (click)="getCallInfo()">Get</button>
-    <mat-slide-toggle class="ml-16" [(ngModel)]="needLogin" [ngModelOptions]="{standalone: true}">Need login</mat-slide-toggle>
     <mat-form-field appearance="fill" class="ml-16 url-select">
-      <mat-label>Url</mat-label>
-      <input matInput placeholder="Place url here" [(ngModel)]="url" [ngModelOptions]="{standalone: true}">
+      <mat-label>Call Url</mat-label>
+      <input matInput placeholder="<CALL_URL>/call/init , <CALL_URL>/call/join" [(ngModel)]="url" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
   </div>
   <div class="form-group">
