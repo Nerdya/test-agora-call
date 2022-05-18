@@ -41,12 +41,12 @@ export class CustomerComponent implements OnInit, OnDestroy {
     private callService: CallService
   ) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     
   }
 
   ngOnDestroy() {
-      
+    this.leaveCall();
   }
 
   getToken() {
