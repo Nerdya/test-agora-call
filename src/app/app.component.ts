@@ -17,6 +17,10 @@ export class AppComponent {
             path: '/agent',
             title: 'Agent'
         },
+        {
+            path: '/flowchart',
+            title: 'Flowchart'
+        },
     ];
 
     constructor(

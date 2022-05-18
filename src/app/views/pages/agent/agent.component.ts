@@ -77,6 +77,7 @@ export class AgentComponent implements OnInit, OnDestroy {
     if (needLogin) {
       headers = headers.set('token', this.authToken);
     }
+    headers = headers.set('Access-Control-Allow-Origin', '*');
     let params = new HttpParams();
     params = params.set('sessionKey', localStorage.getItem('sessionKey')!);
     let options = {

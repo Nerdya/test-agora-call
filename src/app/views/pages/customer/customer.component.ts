@@ -77,6 +77,7 @@ export class CustomerComponent implements OnInit, OnDestroy {
     if (needLogin) {
       headers = headers.set('token', this.authToken);
     }
+    headers = headers.set('Access-Control-Allow-Origin', '*');
     let options = {
       headers: headers,
     }
