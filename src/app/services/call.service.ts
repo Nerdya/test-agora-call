@@ -11,7 +11,7 @@ export class CallService {
     constructor(private http: HttpClient) {
     }
 
-    login(url: any = environment.apiUrl, body: any, options: any): Observable<any> {
+    login(url: any, body: any, options: any): Observable<any> {
         return this.http.post(url + '/auth/login', body, options).pipe(
             map(res => {
                 return res;
@@ -19,7 +19,7 @@ export class CallService {
         );
     }
 
-    callinit(url: any = environment.apiUrl, options: any): Observable<any> {
+    callinit(url: any, options: any): Observable<any> {
         return this.http.get(url + '/vekyc/call/init', options).pipe(
             map(res => {
                 return res;
@@ -27,7 +27,7 @@ export class CallService {
         );
     }
 
-    calljoin(url: any = environment.apiUrl, options: any): Observable<any> {
+    calljoin(url: any, options: any): Observable<any> {
         return this.http.get(url + '/vekyc/call/join', options).pipe(
             map(res => {
                 return res;

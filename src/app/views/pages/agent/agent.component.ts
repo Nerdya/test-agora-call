@@ -14,7 +14,7 @@ export class AgentComponent implements OnInit, OnDestroy {
     "password": "t1MPggD49pQkboYrWYmkd1umlJe155QfRhPkQFYgkq59NVsXdPPdARhIzqjJdOeNsUYzDbd2bEsUdMT3ZPJzFeNJovbK3GwYmOenfZoZ/sBPypY2FYGrquV7BauMVaaGjZJLkoFxySylAc7rLVyJjCVg5AoQdzEc6+2XBNBM2dw="
   };
   authToken: any;
-  url = '';
+  url = 'https://uat-vcore.taichinhdidong.vn/api/v1';
   appId = '';
   channel = '';
   token = '';
