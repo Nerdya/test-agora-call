@@ -22,6 +22,7 @@ export class AgentComponent implements OnInit, OnDestroy {
   uid = '';
   options: any;
   message = '';
+  joined = false;
 
   // Agora
   // client: IAgoraRTCClient = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
@@ -47,7 +48,9 @@ export class AgentComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.leaveCall();
+    if (this.joined) {
+      this.leaveCall();
+    }
   }
 
   getCallInfo() {
@@ -182,6 +185,7 @@ export class AgentComponent implements OnInit, OnDestroy {
     this.localVideoTrack.play('local');
 
     this.message = 'join success!';
+    this.joined = true;
   }
 
   // 5. Leave the channel
@@ -202,6 +206,7 @@ export class AgentComponent implements OnInit, OnDestroy {
     await this.client.leave();
 
     this.message = 'leave success!';
+    this.joined = false;
   }
 
   async checkAudioOutput() {
