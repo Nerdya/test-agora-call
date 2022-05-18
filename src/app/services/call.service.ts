@@ -20,7 +20,7 @@ export class CallService {
     }
 
     callinit(url: any, options: any): Observable<any> {
-        return this.http.get(url + '/vekyc/call/init', options).pipe(
+        return this.http.get(url + '/call/init', options).pipe(
             map(res => {
                 return res;
             })
@@ -28,7 +28,7 @@ export class CallService {
     }
 
     calljoin(url: any, options: any): Observable<any> {
-        return this.http.get(url + '/vekyc/call/join', options).pipe(
+        return this.http.get(url + '/call/join', options).pipe(
             map(res => {
                 return res;
             })
