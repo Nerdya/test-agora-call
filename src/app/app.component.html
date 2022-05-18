@@ -1,11 +1,8 @@
-<div *ngIf="isNotAuthRoute()">
+<div>
     <!-- Toolbar -->
     <mat-toolbar color="primary" class="app-toolbar">
-        <mat-icon>healing</mat-icon>
         <span>Agora</span>
         <span class="spacer"></span>
-        <!-- <span>Hi, {{currentUser.firstName}}</span> -->
-        <button mat-button mat-raised-button (click)="logout()">Logout</button>
     </mat-toolbar>
 
     <!-- Sidenav -->
@@ -21,4 +18,4 @@
     </mat-sidenav-container>
 </div>
 
-<router-outlet *ngIf="!isNotAuthRoute()"></router-outlet>
+<router-outlet></router-outlet>

@@ -2,6 +2,18 @@ form {
     margin: 16px;
 }
 
+.url-form {
+    display: flex;
+    align-content: flex-start;
+    .url-button {
+        margin-top: 8px;
+        height: 32px;
+    }
+    .url-select {
+        flex: auto;
+    }
+}
+
 .ml-16 {
     margin-left: 16px;
 }

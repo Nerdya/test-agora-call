@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'face-mask-detection'`, () => {
+  it(`should have as title 'test-agora-call'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('face-mask-detection');
+    expect(app.title).toEqual('test-agora-call');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('face-mask-detection app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('test-agora-call app is running!');
   });
 });

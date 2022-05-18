@@ -1,5 +1,7 @@
+import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import AgoraRTC, { IAgoraRTCClient } from 'agora-rtc-sdk-ng';
+import { CallService } from '../../../services/call.service';
 
 @Component({
   selector: 'app-agent',
@@ -7,10 +9,15 @@ import AgoraRTC, { IAgoraRTCClient } from 'agora-rtc-sdk-ng';
   styleUrls: ['./agent.component.scss']
 })
 export class AgentComponent implements OnInit, OnDestroy {
-  title = 'test-agora-call';
-  appId = '7943438693ba44f9aa56a747d8dd27d2';
-  channel = 'manhnt';
-  token = '0067943438693ba44f9aa56a747d8dd27d2IADQjbMPGemcrulMIWmX41zRw1yst0wP+XG+E/mVL0viZH4K0ZAAAAAAEAB+8cTOFZyEYgEAAQAVnIRi';
+  user = {
+    "userName": "admin",
+    "password": "t1MPggD49pQkboYrWYmkd1umlJe155QfRhPkQFYgkq59NVsXdPPdARhIzqjJdOeNsUYzDbd2bEsUdMT3ZPJzFeNJovbK3GwYmOenfZoZ/sBPypY2FYGrquV7BauMVaaGjZJLkoFxySylAc7rLVyJjCVg5AoQdzEc6+2XBNBM2dw="
+  };
+  authToken: any;
+  url = 'https://uat-vcore.taichinhdidong.vn/api/v1';
+  appId = '';
+  channel = '';
+  token = '';
   uid: any;
   options: any;
   message = '';
@@ -30,11 +37,11 @@ export class AgentComponent implements OnInit, OnDestroy {
   //   localVideoTrack: null,
   // };
 
-  constructor() {}
+  constructor(
+    private callService: CallService
+  ) {}
 
   async ngOnInit() {
-    this.initCall();
-    // this.startBasicCall();
     
   }
 
@@ -42,20 +49,49 @@ export class AgentComponent implements OnInit, OnDestroy {
       
   }
 
-  initCall() {
-    let data = {
-      sessionId: "8eb2a44d9fe6a8841ba046eb86e9a82a799a2ba26feabaf73f78da3605628718",
-      sessionKey: "8eb2a44d9fe6a8841ba046eb86e9a82a799a2ba26feabaf73f78da3605628718",
-      code: "006b2d320ca642f48958f2b5e5cd1b1c547IAASVUdwQRRbri2xMK+eX+clNt9Taf0T63KQsj57D4ilvtK8c3ojKr4eCgD03x+CmbKEYgAA",
-      webcamToken: null,
-      screenToken: null,
-      subId: "777241873"
+  getToken() {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json');
+    let options = {
+      headers: headers,
     }
-    this.appId = data.sessionId;
-    this.channel = data.sessionKey;
-    this.token = data.code;
-    this.uid = data.subId;
+    this.callService.login(this.url, this.user, options).subscribe(res => {
+      if (res && res.status) {
+        this.authToken = res?.data.token;
+        this.getCallOptions();
+      }
+    });
+  }
 
+  getCallOptions() {
+    let headers = new HttpHeaders();
+    headers = headers.set('token', this.authToken);
+    let params = new HttpParams();
+    params = params.set('sessionKey', localStorage.getItem('sessionKey')!);
+    let options = {
+      headers: headers,
+      params: params
+    }
+    this.callService.calljoin(this.url, options).subscribe(res => {
+      // let data = {
+      //   sessionId: "8eb2a44d9fe6a8841ba046eb86e9a82a799a2ba26feabaf73f78da3605628718",
+      //   sessionKey: "8eb2a44d9fe6a8841ba046eb86e9a82a799a2ba26feabaf73f78da3605628718",
+      //   code: "006b2d320ca642f48958f2b5e5cd1b1c547IAASVUdwQRRbri2xMK+eX+clNt9Taf0T63KQsj57D4ilvtK8c3ojKr4eCgD03x+CmbKEYgAA",
+      //   webcamToken: null,
+      //   screenToken: null,
+      //   subId: "777241873"
+      // }
+      if (res && res.status) {
+        this.appId = res?.data.sessionId;
+        this.channel = res?.data.sessionKey;
+        this.token = res?.data.code;
+        this.uid = res?.data.subId;
+        this.initCall();
+      }
+    });
+  }
+
+  initCall() {
     this.options = {
       // Pass your app ID here.
       appId: this.appId,
@@ -64,6 +100,7 @@ export class AgentComponent implements OnInit, OnDestroy {
       // Pass a token if your project enables the App Certificate.
       token: this.token,
     };
+    this.startBasicCall();
   }
   
   async startBasicCall() {
@@ -117,8 +154,6 @@ export class AgentComponent implements OnInit, OnDestroy {
   }
 
   async joinCall() {
-    this.startBasicCall();
-
     // 2. Join
     this.uid = await this.client.join(this.options.appId, this.options.channel, this.options.token, null);
 
@@ -155,19 +190,12 @@ export class AgentComponent implements OnInit, OnDestroy {
     this.message = 'leave success!';
   }
 
-  async checkAudio() {
+  async checkAudioOutput() {
     AgoraRTC.getDevices().then((devices: any) => {
       let outputs = devices.filter((device: any) => device.kind.includes('output'));
       console.log(outputs);
       alert(JSON.stringify(outputs));
     });
-  }
-  
-  setAudio() {
-    AgoraRTC.getSupportedCodec().then((codec: any) => {
-      console.log(codec);
-      alert(JSON.stringify(codec));
-    })
   }
 
 }
