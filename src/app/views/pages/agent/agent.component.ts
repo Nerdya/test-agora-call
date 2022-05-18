@@ -217,6 +217,13 @@ export class AgentComponent implements OnInit, OnDestroy {
       alert(JSON.stringify(outputs));
     });
   }
+  
+  async checkCameras() {
+    AgoraRTC.getCameras().then((cameras: any) => {
+      console.log(cameras);
+      alert(JSON.stringify(cameras));
+    })
+  }
 
 }
 

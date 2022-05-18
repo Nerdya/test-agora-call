@@ -216,5 +216,12 @@ export class CustomerComponent implements OnInit, OnDestroy {
     });
   }
 
+  async checkCameras() {
+    AgoraRTC.getCameras().then((cameras: any) => {
+      console.log(cameras);
+      alert(JSON.stringify(cameras));
+    })
+  }
+
 }
 
