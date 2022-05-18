@@ -13,12 +13,12 @@ export class AgentComponent implements OnInit, OnDestroy {
     "userName": "admin",
     "password": "t1MPggD49pQkboYrWYmkd1umlJe155QfRhPkQFYgkq59NVsXdPPdARhIzqjJdOeNsUYzDbd2bEsUdMT3ZPJzFeNJovbK3GwYmOenfZoZ/sBPypY2FYGrquV7BauMVaaGjZJLkoFxySylAc7rLVyJjCVg5AoQdzEc6+2XBNBM2dw="
   };
-  authToken: any;
+  authToken = '';
   url = 'https://uat-vcore.taichinhdidong.vn/api/v1';
   appId = '';
   channel = '';
   token = '';
-  uid: any;
+  uid = '';
   options: any;
   message = '';
 
@@ -99,6 +99,8 @@ export class AgentComponent implements OnInit, OnDestroy {
       channel: this.channel,
       // Pass a token if your project enables the App Certificate.
       token: this.token,
+      // User id
+      uid: Number(this.uid),
     };
     this.startBasicCall();
   }
@@ -155,7 +157,7 @@ export class AgentComponent implements OnInit, OnDestroy {
 
   async joinCall() {
     // 2. Join
-    this.uid = await this.client.join(this.options.appId, this.options.channel, this.options.token, null);
+    this.uid = await this.client.join(this.options.appId, this.options.channel, this.options.token, this.options.uid);
 
     // 3. Create and publish local tracks
     // Create an audio track from the audio sampled by a microphone.
