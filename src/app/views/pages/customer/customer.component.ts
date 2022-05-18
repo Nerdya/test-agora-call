@@ -9,6 +9,7 @@ import { CallService } from '../../../services/call.service';
   styleUrls: ['./customer.component.scss']
 })
 export class CustomerComponent implements OnInit, OnDestroy {
+  needLogin = false;
   user = {
     "userName": "admin",
     "password": "t1MPggD49pQkboYrWYmkd1umlJe155QfRhPkQFYgkq59NVsXdPPdARhIzqjJdOeNsUYzDbd2bEsUdMT3ZPJzFeNJovbK3GwYmOenfZoZ/sBPypY2FYGrquV7BauMVaaGjZJLkoFxySylAc7rLVyJjCVg5AoQdzEc6+2XBNBM2dw="
@@ -49,6 +50,14 @@ export class CustomerComponent implements OnInit, OnDestroy {
     this.leaveCall();
   }
 
+  getCallInfo() {
+    if (this.needLogin) {
+      this.getToken();
+    } else {
+      this.getCallOptions(false);
+    }
+  }
+
   getToken() {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
@@ -58,14 +67,16 @@ export class CustomerComponent implements OnInit, OnDestroy {
     this.callService.login(this.url, this.user, options).subscribe(res => {
       if (res && res.status) {
         this.authToken = res?.data.token;
-        this.getCallOptions();
+        this.getCallOptions(true);
       }
     });
   }
 
-  getCallOptions() {
+  getCallOptions(needLogin: any) {
     let headers = new HttpHeaders();
-    headers = headers.set('token', this.authToken);
+    if (needLogin) {
+      headers = headers.set('token', this.authToken);
+    }
     let options = {
       headers: headers,
     }

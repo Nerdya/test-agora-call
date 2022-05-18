@@ -4,9 +4,8 @@ form {
 
 .url-form {
     display: flex;
-    align-content: flex-start;
+    align-items: center;
     .url-button {
-        margin-top: 8px;
         height: 32px;
     }
     .url-select {

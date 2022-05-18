@@ -1,6 +1,7 @@
 <form>
   <div class="url-form">
-    <button mat-raised-button class="url-button" (click)="getToken()">Get</button>
+    <button mat-raised-button class="url-button" (click)="getCallInfo()">Get</button>
+    <mat-slide-toggle class="ml-16" [(ngModel)]="needLogin" [ngModelOptions]="{standalone: true}">Need login</mat-slide-toggle>
     <mat-form-field appearance="fill" class="ml-16 url-select">
       <mat-label>Url</mat-label>
       <input matInput placeholder="Place url here" [(ngModel)]="url" [ngModelOptions]="{standalone: true}">
