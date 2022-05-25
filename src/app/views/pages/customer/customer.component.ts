@@ -170,7 +170,7 @@ export class CustomerComponent implements OnInit, OnDestroy {
   }
 
   async joinCall() {
-    console.log('joinCall options', this.options);
+    console.log('------------joinCall options', this.options);
     // 2. Join
     this.uid = await this.client.join(this.options.appId, this.options.channel, this.options.token, this.options.uid);
 
