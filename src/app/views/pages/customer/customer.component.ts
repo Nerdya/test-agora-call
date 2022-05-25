@@ -100,7 +100,6 @@ export class CustomerComponent implements OnInit, OnDestroy {
         this.channel = res?.data.sessionKey;
         this.token = res?.data.code;
         this.uid = res?.data.subId;
-        this.startBasicCall();
       }
     });
   }
@@ -156,6 +155,7 @@ export class CustomerComponent implements OnInit, OnDestroy {
   }
 
   async joinCall() {
+    this.startBasicCall();
     this.options = {
       // Pass your app ID here.
       appId: this.appId,
@@ -167,6 +167,7 @@ export class CustomerComponent implements OnInit, OnDestroy {
       uid: Number(this.uid),
     };
     console.log('------------joinCall options', this.options);
+
     // 2. Join
     this.uid = await this.client.join(this.options.appId, this.options.channel, this.options.token, this.options.uid);
 

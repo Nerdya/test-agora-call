@@ -102,7 +102,6 @@ export class AgentComponent implements OnInit, OnDestroy {
         this.channel = res?.data.sessionKey;
         this.token = res?.data.code;
         this.uid = res?.data.subId;
-        this.startBasicCall();
       }
     });
   }
@@ -158,6 +157,7 @@ export class AgentComponent implements OnInit, OnDestroy {
   }
 
   async joinCall() {
+    this.startBasicCall();
     this.options = {
       // Pass your app ID here.
       appId: this.appId,
