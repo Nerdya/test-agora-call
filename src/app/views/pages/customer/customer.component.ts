@@ -100,23 +100,9 @@ export class CustomerComponent implements OnInit, OnDestroy {
         this.channel = res?.data.sessionKey;
         this.token = res?.data.code;
         this.uid = res?.data.subId;
-        this.initCall();
+        this.startBasicCall();
       }
     });
-  }
-
-  initCall() {
-    this.options = {
-      // Pass your app ID here.
-      appId: this.appId,
-      // Set the channel name.
-      channel: this.channel,
-      // Pass a token if your project enables the App Certificate.
-      token: this.token,
-      // User id
-      uid: Number(this.uid),
-    };
-    this.startBasicCall();
   }
   
   async startBasicCall() {
@@ -170,6 +156,16 @@ export class CustomerComponent implements OnInit, OnDestroy {
   }
 
   async joinCall() {
+    this.options = {
+      // Pass your app ID here.
+      appId: this.appId,
+      // Set the channel name.
+      channel: this.channel,
+      // Pass a token if your project enables the App Certificate.
+      token: this.token,
+      // User id
+      uid: Number(this.uid),
+    };
     console.log('------------joinCall options', this.options);
     // 2. Join
     this.uid = await this.client.join(this.options.appId, this.options.channel, this.options.token, this.options.uid);
