@@ -105,7 +105,6 @@ export class CustomerComponent implements OnInit, OnDestroy {
   }
   
   async startBasicCall() {
-    console.log('startBasicCall');
     // 1. Create client
     this.client = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
     this.message = 'create client success!';
@@ -166,7 +165,6 @@ export class CustomerComponent implements OnInit, OnDestroy {
       // User id
       uid: Number(this.uid),
     };
-    console.log('------------joinCall options', this.options);
 
     // 2. Join
     this.uid = await this.client.join(this.options.appId, this.options.channel, this.options.token, this.options.uid);
