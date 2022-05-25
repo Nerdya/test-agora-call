@@ -68,7 +68,7 @@ export class AgentComponent implements OnInit, OnDestroy {
     let options = {
       headers: headers,
     }
-    this.callService.login(this.url, this.user, options).subscribe(res => {
+    this.callService.login(this.authUrl, this.user, options).subscribe(res => {
       if (res && res.status) {
         this.authToken = res?.data.token;
         this.getCallOptions(true);

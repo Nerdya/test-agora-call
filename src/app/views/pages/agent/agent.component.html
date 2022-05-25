@@ -7,7 +7,7 @@
     </mat-form-field>
   </div>
   <div class="url-form">
-    <button mat-raised-button class="url-button" (click)="getCallInfo()">GET /call/init</button>
+    <button mat-raised-button class="url-button" (click)="getCallInfo()">GET /call/join</button>
     <mat-form-field appearance="fill" class="ml-16 url-select">
       <mat-label>Call Origin</mat-label>
       <input matInput placeholder="URL will be {Call Origin}/call/join" [(ngModel)]="url" [ngModelOptions]="{standalone: true}">
