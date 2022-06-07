@@ -1,6 +1,6 @@
 <form>
   <div class="url-form">
-    <mat-slide-toggle class="url-button" [(ngModel)]="needLogin" [ngModelOptions]="{standalone: true}">Need login</mat-slide-toggle>
+    <mat-slide-toggle class="url-button" color="primary" [(ngModel)]="needLogin" [ngModelOptions]="{standalone: true}">Need login</mat-slide-toggle>
     <mat-form-field appearance="fill" class="ml-16 url-select" *ngIf="needLogin">
       <mat-label>Login Origin</mat-label>
       <input matInput placeholder="URL will be {Login Origin}/auth/login" [(ngModel)]="authUrl" [ngModelOptions]="{standalone: true}">

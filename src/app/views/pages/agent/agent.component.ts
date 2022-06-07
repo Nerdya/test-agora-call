@@ -9,18 +9,18 @@ import { CallService } from '../../../services/call.service';
   styleUrls: ['./agent.component.scss']
 })
 export class AgentComponent implements OnInit, OnDestroy {
-  needLogin = false;
+  needLogin = (sessionStorage.getItem('needLogin') == 'true' ? true : false);
   user = {
     "userName": "admin",
     "password": "t1MPggD49pQkboYrWYmkd1umlJe155QfRhPkQFYgkq59NVsXdPPdARhIzqjJdOeNsUYzDbd2bEsUdMT3ZPJzFeNJovbK3GwYmOenfZoZ/sBPypY2FYGrquV7BauMVaaGjZJLkoFxySylAc7rLVyJjCVg5AoQdzEc6+2XBNBM2dw="
   };
-  authUrl = '';
+  authUrl = sessionStorage.getItem('authUrl') ?? '';
   authToken = '';
-  url = '';
-  appId = '';
-  channel = '';
-  token = '';
-  uid = '';
+  url = sessionStorage.getItem('url') ?? '';
+  appId = sessionStorage.getItem('appId_agent') ?? '';
+  channel = sessionStorage.getItem('channel_agent') ?? '';
+  token = sessionStorage.getItem('token_agent') ?? '';
+  uid = sessionStorage.getItem('uid_agent') ?? '';
   options: any;
   message = '';
   joined = false;
@@ -49,6 +49,13 @@ export class AgentComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    sessionStorage.setItem('needLogin', this.needLogin.toString());
+    sessionStorage.setItem('authUrl', this.authUrl!);
+    sessionStorage.setItem('url', this.url!);
+    sessionStorage.setItem('appId_agent', this.appId!);
+    sessionStorage.setItem('channel_agent', this.channel!);
+    sessionStorage.setItem('token_agent', this.token!);
+    sessionStorage.setItem('uid_agent', this.uid!);
     if (this.joined) {
       this.leaveCall();
     }
