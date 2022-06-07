@@ -9,7 +9,9 @@
     <mat-sidenav-container class="sidenav-container">
         <mat-sidenav opened mode="side">
             <mat-button-toggle-group name="fontStyle" vertical [value]="getUrl()">
-                <mat-button-toggle mat-button *ngFor="let route of routes" routerLink="{{route.path}}" value="{{route.path}}">{{route.title}}</mat-button-toggle>
+                <mat-button-toggle *ngFor="let route of routes" routerLink="{{route.path}}" value="{{route.path}}">
+                    {{route.title}}
+                </mat-button-toggle>
             </mat-button-toggle-group>
         </mat-sidenav>
         <mat-sidenav-content>

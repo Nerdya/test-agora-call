@@ -12,5 +12,9 @@
 .sidenav-container {
     height: calc(100vh - 64px);
     background: #eee;
-  }
-  
+}
+
+.mat-button-toggle-checked {
+    background-color: #a8b5da;
+    color: #435fba;
+}
